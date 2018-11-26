@@ -521,8 +521,8 @@ else
 	echo "<title>". _QXZ("Agent Form Display Script");
 	echo "</title>\n";
 
-	echo "<script language=\"JavaScript\" src=\"calendar_db.js\"></script>\n";
-	echo "	<link rel=\"stylesheet\" href=\"calendar.css\">\n";
+	echo "<script language=\"JavaScript\" src=\"js/calendar_db.js\"></script>\n";
+	echo "	<link rel=\"stylesheet\" href=\"css/calendar.css\">\n";
 	echo "	<script language=\"Javascript\">\n";
 	echo "	function open_help(taskspan,taskhelp) \n";
 	echo "		{\n";

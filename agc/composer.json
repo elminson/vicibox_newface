@@ -1,0 +1,35 @@
+{
+    "name": "elminson/agc",
+    "description": "Project rebuild all php code using SOLID and OOP ?",
+    "type": "project",
+    "require": {
+        "phpunit/phpunit": "^7.4@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.4@dev"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Elminson De Oleo Baez",
+            "email": "edeoleo@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Elminson\\agc\\": "src/",
+            "Elminson\\agc\\Test\\": "tests/"
+        },
+        "psr-4": {
+            "Elminson\\agc\\": "src/",
+            "Elminson\\agc\\Test\\": "tests/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Elminson\\agc\\": "src/",
+            "Elminson\\agc\\Test\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev"
+}

@@ -343,8 +343,8 @@ echo "<head>\n";
 echo "<!-- VERSION: $version     BUILD: $build    USER: $user   server_ip: $server_ip-->\n";
 echo "<title>"._QXZ("ViciDial Notes");
 echo "</title>\n";
-echo "<script language=\"JavaScript\" src=\"calendar_db.js\"></script>\n";
-echo "<link rel=\"stylesheet\" href=\"calendar.css\">\n";
+echo "<script language=\"JavaScript\" src=\"js/calendar_db.js\"></script>\n";
+echo "<link rel=\"stylesheet\" href=\"css/calendar.css\">\n";
 ?>
 
 <?php

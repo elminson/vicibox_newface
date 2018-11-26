@@ -186,10 +186,10 @@ echo '<?xml version="1.0" encoding="UTF-8"?>
 <html>
 <head>
 <title><?php echo _QXZ("Agent Chat Interface"); ?></title>
-<script type="text/javascript" src="simpletreemenu.js">
+<script type="text/javascript" src="js/simpletreemenu.js">
 
 /***********************************************
-* Simple Tree Menu- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* Simple Tree Menu- ï¿½ Dynamic Drive DHTML code library (www.dynamicdrive.com)
 * This notice MUST stay intact for legal use
 * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
 ***********************************************/
