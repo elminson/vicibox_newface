@@ -1,5 +1,12 @@
 <?php
 
+//@todo remove all GET to set internals variables (create a separete class) 
+//@todo Create a class for preg_replace 
+//@todo Create a model for sql queries
+//@todo create a class for  DEFINABLE SETTINGS AND OPTIONS
+//@todo create a class for layout (colors and logos)
+//@todo abstract log class and function 
+
 $version = '2.14-557c';
 $build = '180314-2222';
 $mel=1;					# Mysql Error Log enabled = 1
