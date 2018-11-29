@@ -16,111 +16,35 @@ $DB = 0;
 
 require_once("dbconnect_mysqli.php");
 require_once("functions.php");
-
 function ConvertGet($_GET, $_POST)
 {
+    $requestType = $_SERVER['REQUEST_METHOD'];
 
-}
+    $permit =
+      array(
+        'DB' => 'DB', 'JS_browser_width' => 'JS_browser_width', 'JS_browser_height' => 'JS_browser_height',
+        'phone_login' => 'phone_login', 'phone_pass' => 'phone_pass', 'VD_login' => 'VD_login', 'VD_pass' => 'VD_pass',
+        'VD_campaign' => 'VD_campaign', 'VD_language' => 'VD_language', 'relogin' => 'relogin',
+        'MGR_override' => 'MGR_override', 'admin_test' => 'admin_test', 'LOGINvarONE' => 'LOGINvarONE',
+        'LOGINvarTWO' => 'LOGINvarTWO', 'LOGINvarTHREE' => 'LOGINvarTHREE', 'LOGINvarFOUR' => 'LOGINvarFOUR',
+        'LOGINvarFIVE' => 'LOGINvarFIVE', 'pl' => 'phone_login', 'pp' => 'phone_pass'
+      );
+    foreach ($permit as $var) {
 
-if (isset($_GET["DB"])) {
-    $DB = $_GET["DB"];
-} elseif (isset($_POST["DB"])) {
-    $DB = $_POST["DB"];
-}
-if (isset($_GET["JS_browser_width"])) {
-    $JS_browser_width = $_GET["JS_browser_width"];
-} elseif (isset($_POST["JS_browser_width"])) {
-    $JS_browser_width = $_POST["JS_browser_width"];
-}
-if (isset($_GET["JS_browser_height"])) {
-    $JS_browser_height = $_GET["JS_browser_height"];
-} elseif (isset($_POST["JS_browser_height"])) {
-    $JS_browser_height = $_POST["JS_browser_height"];
-}
-if (isset($_GET["phone_login"])) {
-    $phone_login = $_GET["phone_login"];
-} elseif (isset($_POST["phone_login"])) {
-    $phone_login = $_POST["phone_login"];
-}
-if (isset($_GET["phone_pass"])) {
-    $phone_pass = $_GET["phone_pass"];
-} elseif (isset($_POST["phone_pass"])) {
-    $phone_pass = $_POST["phone_pass"];
-}
-if (isset($_GET["VD_login"])) {
-    $VD_login = $_GET["VD_login"];
-} elseif (isset($_POST["VD_login"])) {
-    $VD_login = $_POST["VD_login"];
-}
-if (isset($_GET["VD_pass"])) {
-    $VD_pass = $_GET["VD_pass"];
-} elseif (isset($_POST["VD_pass"])) {
-    $VD_pass = $_POST["VD_pass"];
-}
-if (isset($_GET["VD_campaign"])) {
-    $VD_campaign = $_GET["VD_campaign"];
-} elseif (isset($_POST["VD_campaign"])) {
-    $VD_campaign = $_POST["VD_campaign"];
-}
-if (isset($_GET["VD_language"])) {
-    $VD_language = $_GET["VD_language"];
-} elseif (isset($_POST["VD_language"])) {
-    $VD_language = $_POST["VD_language"];
-}
-if (isset($_GET["relogin"])) {
-    $relogin = $_GET["relogin"];
-} elseif (isset($_POST["relogin"])) {
-    $relogin = $_POST["relogin"];
-}
-if (isset($_GET["MGR_override"])) {
-    $MGR_override = $_GET["MGR_override"];
-} elseif (isset($_POST["MGR_override"])) {
-    $MGR_override = $_POST["MGR_override"];
-}
-if (isset($_GET["admin_test"])) {
-    $admin_test = $_GET["admin_test"];
-} elseif (isset($_POST["admin_test"])) {
-    $admin_test = $_POST["admin_test"];
-}
-if (isset($_GET["LOGINvarONE"])) {
-    $LOGINvarONE = $_GET["LOGINvarONE"];
-} elseif (isset($_POST["LOGINvarONE"])) {
-    $LOGINvarONE = $_POST["LOGINvarONE"];
-}
-if (isset($_GET["LOGINvarTWO"])) {
-    $LOGINvarTWO = $_GET["LOGINvarTWO"];
-} elseif (isset($_POST["LOGINvarTWO"])) {
-    $LOGINvarTWO = $_POST["LOGINvarTWO"];
-}
-if (isset($_GET["LOGINvarTHREE"])) {
-    $LOGINvarTHREE = $_GET["LOGINvarTHREE"];
-} elseif (isset($_POST["LOGINvarTHREE"])) {
-    $LOGINvarTHREE = $_POST["LOGINvarTHREE"];
-}
-if (isset($_GET["LOGINvarFOUR"])) {
-    $LOGINvarFOUR = $_GET["LOGINvarFOUR"];
-} elseif (isset($_POST["LOGINvarFOUR"])) {
-    $LOGINvarFOUR = $_POST["LOGINvarFOUR"];
-}
-if (isset($_GET["LOGINvarFIVE"])) {
-    $LOGINvarFIVE = $_GET["LOGINvarFIVE"];
-} elseif (isset($_POST["LOGINvarFIVE"])) {
-    $LOGINvarFIVE = $_POST["LOGINvarFIVE"];
-}
-if (!isset($phone_login)) {
-    if (isset($_GET["pl"])) {
-        $phone_login = $_GET["pl"];
-    } elseif (isset($_POST["pl"])) {
-        $phone_login = $_POST["pl"];
+        switch ($requestType) {
+            case 'POST':
+                $$var = $_POST[$var];
+                break;
+            case 'GET':
+                $$var = $_GET[$var];
+                break;
+            default:
+                //request type that isn't being handled.
+                break;
+        }
     }
 }
-if (!isset($phone_pass)) {
-    if (isset($_GET["pp"])) {
-        $phone_pass = $_GET["pp"];
-    } elseif (isset($_POST["pp"])) {
-        $phone_pass = $_POST["pp"];
-    }
-}
+
 if (isset($VD_campaign)) {
     $VD_campaign = strtoupper($VD_campaign);
     $VD_campaign = preg_replace("/\s/i", '', $VD_campaign);
@@ -500,78 +424,7 @@ if ($campaign_login_list > 0) {
 
 if ($LogiNAJAX > 0) {
     ?>
-
-  <script type="text/javascript">
-
-      <!--
-      var BrowseWidth = 0;
-      var BrowseHeight = 0;
-
-      function browser_dimensions() {
-          <?php
-          if (preg_match('/MSIE/', $browser)) {
-              echo "	if (document.documentElement && document.documentElement.clientHeight)\n";
-              echo "			{BrowseWidth = document.documentElement.clientWidth;}\n";
-              echo "		else if (document.body)\n";
-              echo "			{BrowseWidth = document.body.clientWidth;}\n";
-              echo "		if (document.documentElement && document.documentElement.clientHeight)\n";
-              echo "			{BrowseHeight = document.documentElement.clientHeight;}\n";
-              echo "		else if (document.body)\n";
-              echo "			{BrowseHeight = document.body.clientHeight;}\n";
-          } else {
-              echo "BrowseWidth = window.innerWidth;\n";
-              echo "		BrowseHeight = window.innerHeight;\n";
-          }
-          ?>
-
-          document.vicidial_form.JS_browser_width.value = BrowseWidth;
-          document.vicidial_form.JS_browser_height.value = BrowseHeight;
-      }
-
-      // ################################################################################
-      // Send Request for allowable campaigns to populate the campaigns pull-down
-      function login_allowable_campaigns() {
-          //	alert(document.vicidial_form.JS_browser_width.value + '|' + BrowseWidth + '|' + document.vicidial_form.JS_browser_height.value + '|' + BrowseHeight);
-          var xmlhttp = false;
-          /*@cc_on @*/
-          /*@if (@_jscript_version >= 5)
-			// JScript gives us Conditional compilation, we can cope with old IE versions.
-			// and security blocked creation of the objects.
-			 try {
-			  xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-			 } catch (e) {
-			  try {
-			   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			  } catch (E) {
-			   xmlhttp = false;
-			  }
-			 }
-			@end @*/
-          if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
-              xmlhttp = new XMLHttpRequest();
-          }
-          if (xmlhttp) {
-              logincampaign_query = "&user=" + document.vicidial_form.VD_login.value + "&pass=" + document.vicidial_form.VD_pass.value + "&ACTION=LogiNCamPaigns&format=html";
-              xmlhttp.open('POST', 'vdc_db_query.php');
-              xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-              xmlhttp.send(logincampaign_query);
-              xmlhttp.onreadystatechange = function () {
-                  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                      Nactiveext = null;
-                      Nactiveext = xmlhttp.responseText;
-                      //	alert(logincampaign_query);
-                      //	alert(xmlhttp.responseText);
-                      document.getElementById("LogiNCamPaigns").innerHTML = Nactiveext;
-                      document.getElementById("LogiNReseT").innerHTML = "<input type=\"button\" value=\"Refresh Campaign List\" onclick=\"login_allowable_campaigns()\" />";
-                      document.getElementById("VD_campaign").focus();
-                  }
-              }
-              delete xmlhttp;
-          }
-      }
-
-      // -->
-  </script>
+  <script type="text/javascript" src="js/loginajax.js"/>
 
     <?php
 } else {
